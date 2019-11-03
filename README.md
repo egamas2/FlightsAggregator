@@ -36,7 +36,7 @@ The result should be a JSON response which contains a list of flights ordered by
 | Name | Description |
 | ------ | ------ |
 | airline | Name of Airline |
-| supplier | Eg: CrazyAir or ToughJet |
+| supplier | Eg: MongerAir or HardJet |
 | fare | Total price rounded to 2 decimals |
 | departureAirportCode | 3 letter IATA code(eg. LHR, AMS) |
 | destinationAirportCode | 3 letter IATA code(eg. LHR, AMS) |
