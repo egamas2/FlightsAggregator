@@ -1,17 +1,23 @@
-#Flight Aggregator
+# FlightsAggregator
 
 **Background:**
 
+Interview test about aggregating responses from different JSON APIs 
+
 Flight Aggregator is a flights search solution which aggregates flight results initially from 2 different suppliers  A future iteration (not part of the test) may add more suppliers.
-
-**Recommended duration of test:**
-
-Allocate no more than 90 minutes to complete this exercise. An incomplete solution is acceptable but documenting any remaining tasks and next steps is expected. 
 
 **What is required:**
 
 Implement the Aggregator Flights service that should produce an aggregated result from both MongerAir and HardJet.
 The result should be a JSON response which contains a list of flights ordered by fare which has the following attributes:
+
+**Known errors (NOT FIXED YET):**
+
+* The use of promises is not correct
+* There was not need for the use of Async annotation
+* Lambdas and streams need to be used on the aggregation of responses async service
+* It needs more separation of concerns and SOLID principles
+* The configuration should be taken out of the spring boot main aplication
 
 **Flights Aggregator API**
 
