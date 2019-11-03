@@ -16,7 +16,7 @@ The result should be a JSON response which contains a list of flights ordered by
 * The use of promises is not correct
 * There was not need for the use of Async annotation
 * Lambdas and streams need to be used on the aggregation of responses async service
-* It needs more separation of concerns and SOLID principles
+* It needs more separation of concerns and better use of SOLID principles
 * The configuration should be taken out of the spring boot main aplication
 
 **Flights Aggregator API**
