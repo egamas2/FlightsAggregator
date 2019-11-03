@@ -55,7 +55,7 @@ public class MongerAirService implements ExternalFlightService {
                 return CompletableFuture.completedFuture(response.getBody().stream().map(r->r.translate(this.zoneId)).collect(Collectors.toList()));
             }
         } catch (RestClientException e) {
-            log.error("Crazy Air service is unavailable",e);
+            log.error("Monger Air service is unavailable",e);
         }
         return CompletableFuture.completedFuture(Collections.emptyList());
     }

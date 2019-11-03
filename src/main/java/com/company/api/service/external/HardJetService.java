@@ -55,7 +55,7 @@ public class HardJetService implements ExternalFlightService {
                 return CompletableFuture.completedFuture(response.getBody().stream().map(r->r.translate(this.zoneId)).collect(Collectors.toList()));
             }
         } catch (RestClientException e) {
-            log.error("Tough Jet Service is unavailable:",e);
+            log.error("Hard Jet Service is unavailable:",e);
         }
         return CompletableFuture.completedFuture(Collections.emptyList());
     }
