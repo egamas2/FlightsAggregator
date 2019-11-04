@@ -13,8 +13,8 @@ The result should be a JSON response which contains a list of flights ordered by
 
 **Known errors (NOT FIXED YET):**
 
-* The use of promises is not correct
-* There was not need for the use of Async annotation
+* The use of promises is not correct. ==> **Fixed(test not working for other reason)** thanks to: https://www.baeldung.com/java-completablefuture
+* There was not need for the use of Async annotation ==> **Removed**
 * Lambdas and streams need to be used on the aggregation of responses async service
 * It needs more separation of concerns and better use of SOLID principles
 * The configuration should be taken out of the spring boot main aplication
