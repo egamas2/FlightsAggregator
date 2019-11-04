@@ -16,7 +16,7 @@ import static org.junit.Assert.assertEquals;
 public class DateAndPriceResponseTests {
 
     @Test
-    public void givenValidToughJetResponseWhenTranslatedToFlightAggregatorResponseDatesAndPricesAsExpected(){
+    public void givenValidHardJetResponseWhenTranslatedToFlightAggregatorResponseDatesAndPricesAsExpected(){
         final FlightAggregatorResponse translated = TestUtilities.CUMBERSOME_JET_HARD_JET_RESPONSE.translate(ZoneId.of("Europe/London"));
         //Requirement Double rounded to 2 decimals with tax remve and discount applied.
         assertEquals("Price is formatted as double (2 decimal positions)","67.50",translated.getFare());

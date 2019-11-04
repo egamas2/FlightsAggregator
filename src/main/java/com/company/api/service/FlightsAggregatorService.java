@@ -1,18 +1,23 @@
 package com.company.api.service;
 
+import com.company.api.domain.IFlightsResponse;
 import com.company.api.domain.aggregator.FlightAggregatorRequest;
 import com.company.api.domain.aggregator.FlightAggregatorResponse;
-import com.company.api.service.external.HardJetService;
-import com.company.api.service.external.MongerAirService;
-import com.company.api.service.external.ExternalFlightService;
+import com.company.api.service.external.HardJetServiceI;
+import com.company.api.service.external.IExternalFlightService;
+import com.company.api.service.external.MongerAirServiceI;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.time.ZoneId;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
@@ -33,20 +38,22 @@ public class FlightsAggregatorService {
 
     public List<FlightAggregatorResponse> aggregateResults(FlightAggregatorRequest request) throws InterruptedException, ExecutionException {
         //Services should be autowired, but java.util.concurrent.CompletionException: java.lang.IllegalStateException: Expectations already declared was thrown the second time a test tries
-        ExternalFlightService[] services = {
-                new MongerAirService(restTemplateExternal, mongerAirAddress, zoneId),
-                new HardJetService(restTemplateExternal, hardJetAddress, zoneId)
+        IExternalFlightService[] services = {
+                new MongerAirServiceI(restTemplateExternal, mongerAirAddress, zoneId),
+                new HardJetServiceI(restTemplateExternal, hardJetAddress, zoneId)
         };
 
-        CompletableFuture<List<FlightAggregatorResponse>>[] futures = new CompletableFuture[services.length];
+        CompletableFuture<ResponseEntity<List<IFlightsResponse>>>[] futures = new CompletableFuture[services.length];
         for (int i = 0; i < services.length; i++) {
             futures[i] = services[i].searchFlights(request);
         }
 
-        final List<List<FlightAggregatorResponse>> finishedFutures = Arrays.stream(futures)
+        final List<ResponseEntity<List<IFlightsResponse>>> finishedFutures = Arrays.stream(futures)
                 .map(CompletableFuture::join).collect(Collectors.toList());
 
-        return finishedFutures.stream().flatMap(Collection::stream).sorted().collect(Collectors.toList());
+        return finishedFutures.stream().map(HttpEntity::getBody).flatMap(Collection::stream).map(f -> f.translate(zoneId)).collect(Collectors.toList());
+
+
     }
 }
 

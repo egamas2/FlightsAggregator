@@ -3,9 +3,9 @@ package com.company.api;
 import com.company.api.domain.aggregator.FlightAggregatorResponse;
 import com.company.api.domain.mongerair.MongerAirResponse;
 import com.company.api.domain.hardjet.HardJetResponse;
-import com.company.api.service.external.HardJetService;
+import com.company.api.service.external.HardJetServiceI;
 import com.company.api.util.TestUtilities;
-import com.company.api.service.external.MongerAirService;
+import com.company.api.service.external.MongerAirServiceI;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -44,10 +44,10 @@ public class ServicesTests {
     private static final String hardJetAddress = "http://localhost:8080/lookfor";
 
     @InjectMocks
-    private MongerAirService mongerAirService;
+    private MongerAirServiceI mongerAirService;
 
     @InjectMocks
-    private HardJetService hardJetService;
+    private HardJetServiceI hardJetService;
 
 
     @Before
@@ -65,8 +65,8 @@ public class ServicesTests {
                 Matchers.<HttpEntity> any(),
                 Matchers.<ParameterizedTypeReference<List<MongerAirResponse>>> any()))
                 .thenReturn(response);
-        final CompletableFuture<List<FlightAggregatorResponse>> future = mongerAirService.searchFlights(TestUtilities.initialRequest);
-        assertNotNull("Rest template called",future.get());
+        final CompletableFuture<ResponseEntity<List<MongerAirResponse>>> future = mongerAirService.searchFlights(TestUtilities.initialRequest);
+        assertNotNull("Rest template called",future);
 
     }
 
@@ -79,8 +79,8 @@ public class ServicesTests {
                 Matchers.<HttpEntity> any(),
                 Matchers.<ParameterizedTypeReference<List<HardJetResponse>>> any()))
                 .thenReturn(response);
-        final CompletableFuture<List<FlightAggregatorResponse>> future = hardJetService.searchFlights(TestUtilities.initialRequest);
-        assertNotNull("Rest template called",future.get());
+        final CompletableFuture<ResponseEntity<List<HardJetResponse>>> future = hardJetService.searchFlights(TestUtilities.initialRequest);
+        assertNotNull("Rest template called",future);
 
     }
 

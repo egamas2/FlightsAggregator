@@ -37,7 +37,7 @@ public class HardJetResponse implements IFlightsResponse<HardJetResponse> {
                 .departureAirportCode(departureAirportName)
                 .destinationAirportCode(arrivalAirportName)
                 .fare(calculateTotalPrice())
-                .supplier("ToughJet").build();
+                .supplier("HardJet").build();
     }
 
     private String adaptDate(String datetime, ZoneId zoneId) {

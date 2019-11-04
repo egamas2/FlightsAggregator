@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.web.client.RestTemplate;
@@ -35,7 +34,7 @@ public class FlightsAggregatorApplication {
 	private String timeZone;
 
 	@Bean("threadPoolTaskExecutor")
-	public TaskExecutor getAsyncExecutor() {
+	public ThreadPoolTaskExecutor getAsyncExecutor() {
 		ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
 		executor.setCorePoolSize(corePoolSize);
 		executor.setMaxPoolSize(maxPoolSize);
@@ -57,7 +56,7 @@ public class FlightsAggregatorApplication {
 	@Bean
 	public ZoneId zoneId(){
 		return ZoneId.of(timeZone);
-	};
+	}
 
 	@Bean
 	public RestTemplate restTemplateExternal() {
