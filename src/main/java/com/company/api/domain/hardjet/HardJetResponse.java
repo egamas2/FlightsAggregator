@@ -17,6 +17,7 @@ import java.time.format.DateTimeFormatter;
 @ToString
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 public class HardJetResponse implements IFlightsResponse<HardJetResponse> {
 
     private String carrier;

@@ -11,6 +11,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 @ToString
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 public class MongerAirRequest implements IFlightsRequest {
 
     private String origin;

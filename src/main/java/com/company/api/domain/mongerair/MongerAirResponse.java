@@ -17,6 +17,7 @@ import java.time.format.DateTimeFormatter;
 @ToString
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 public class MongerAirResponse implements IFlightsResponse<MongerAirResponse> {
 
     private String airline;

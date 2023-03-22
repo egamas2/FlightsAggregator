@@ -1,12 +1,7 @@
 package com.company.api.domain.hardjet;
 
 import com.company.api.domain.IFlightsRequest;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-import lombok.Builder;
-import lombok.AllArgsConstructor;
+import lombok.*;
 import org.springframework.util.StringUtils;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -16,6 +11,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 @ToString
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 public class HardJetRequest implements IFlightsRequest {
 
     private String from;

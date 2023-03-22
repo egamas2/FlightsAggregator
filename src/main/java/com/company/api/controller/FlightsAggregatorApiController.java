@@ -4,6 +4,7 @@ import com.company.api.domain.ErrorMessage;
 import com.company.api.domain.aggregator.FlightAggregatorRequest;
 import com.company.api.domain.aggregator.FlightAggregatorResponse;
 import com.company.api.service.FlightsAggregatorService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -24,7 +24,7 @@ public class FlightsAggregatorApiController {
 
     @Autowired
     private FlightsAggregatorService service;
-
+//    http://localhost:8080/search?origin=any&%20&destination=any&departureDate=any&returnDate=any&numberOfPassengers=any
     @RequestMapping(value = "/search", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getAggregatedFlights(HttpServletRequest request,
                                                   @RequestParam("origin") String origin,

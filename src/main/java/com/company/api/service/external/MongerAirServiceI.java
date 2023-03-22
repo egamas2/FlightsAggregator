@@ -20,7 +20,7 @@ import java.util.concurrent.CompletableFuture;
 @Service
 @Getter
 @Setter
-public class MongerAirServiceI implements IExternalFlightService<MongerAirRequest,MongerAirResponse> {
+public class MongerAirServiceI implements IExternalFlightService<MongerAirRequest, MongerAirResponse> {
 
     private RestTemplate restTemplateExternal;
 
@@ -44,7 +44,11 @@ public class MongerAirServiceI implements IExternalFlightService<MongerAirReques
                         HttpMethod.GET,
                         null,
                         new ParameterizedTypeReference<List<MongerAirResponse>>() {
-                        }));
+                        })).exceptionally(t -> {
+                    t.printStackTrace();
+                    return ResponseEntity.noContent().build();
+                }
+        );
     }
 
     public MongerAirRequest adaptRequestToService(FlightAggregatorRequest flightAggregatorRequest) {
