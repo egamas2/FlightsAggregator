@@ -20,7 +20,7 @@ import java.util.concurrent.CompletableFuture;
 @Service
 @Getter
 @Setter
-public class HardJetServiceI implements IExternalFlightService<HardJetRequest,HardJetResponse> {
+public class HardJetServiceI implements IExternalFlightService<HardJetRequest, HardJetResponse> {
 
     private RestTemplate restTemplateExternal;
 
@@ -33,7 +33,7 @@ public class HardJetServiceI implements IExternalFlightService<HardJetRequest,Ha
     public HardJetServiceI(RestTemplate restTemplateExternal, String hardJetAddress, ZoneId zoneId) {
         this.restTemplateExternal = restTemplateExternal;
         this.address = hardJetAddress;
-        this.zoneId=zoneId;
+        this.zoneId = zoneId;
     }
 
     @Override
@@ -44,7 +44,11 @@ public class HardJetServiceI implements IExternalFlightService<HardJetRequest,Ha
                         HttpMethod.GET,
                         null,
                         new ParameterizedTypeReference<List<HardJetResponse>>() {
-                        }));
+                        })).exceptionally(t -> {
+                                t.printStackTrace();
+                                return ResponseEntity.noContent().build();
+                            }
+                        );
     }
 
     public HardJetRequest adaptRequestToService(FlightAggregatorRequest flightAggregatorRequest) {

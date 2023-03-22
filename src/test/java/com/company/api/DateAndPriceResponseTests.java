@@ -4,7 +4,7 @@ import com.company.api.domain.aggregator.FlightAggregatorResponse;
 import com.company.api.util.TestUtilities;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.ZoneId;

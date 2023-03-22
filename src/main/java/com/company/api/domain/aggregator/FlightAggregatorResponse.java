@@ -8,6 +8,7 @@ import lombok.*;
 @ToString
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 public class FlightAggregatorResponse implements Comparable<FlightAggregatorResponse> {
     private String airline;
     private String supplier;
