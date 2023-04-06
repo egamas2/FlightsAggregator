@@ -44,7 +44,6 @@ public class FlightsAggregatorService {
                 new HardJetServiceI(restTemplateExternal, hardJetAddress, zoneId)
         );
 
-//        List<CompletableFuture<ResponseEntity<List<IFlightsResponse>>>> futures = services.stream().map(s -> s.searchFlights(request)).collect(Collectors.toList());
         List<CompletableFuture> futures = services.stream().map(s -> s.searchFlights(request)).collect(Collectors.toList());
         CompletableFuture<List<ResponseEntity<List<IFlightsResponse>>>> listCompletableFuture = CompletableFuture.allOf(futures.toArray(new CompletableFuture[services.size()]))
                 .thenApply(v -> futures.stream().map(CompletableFuture<ResponseEntity<List<IFlightsResponse>>>::join)
