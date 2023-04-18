@@ -13,11 +13,8 @@ The result should be a JSON response which contains a list of flights ordered by
 
 **Known errors (NOT FIXED YET):**
 
-* Tests not working
 * The use of promises is not correct. ==> **Should be fixed, but in depth testing is yet to be done
 * Investigate if Async annotation is needed. The interviewer told me otherwise
-* It needs separation of concerns; use of SOLID principles
-* The configuration should be taken out of the spring boot main application
 
 **Flights Aggregator API**
 
@@ -144,7 +141,7 @@ The service should connect to the both the suppliers using HTTP.
     ]
     ```
 
-**Requests and responses to and from external providers:**
+**Requests and responses to and from "external" providers:**
 - ```http://localhost:8080/find?origin=LGW&destination=MAD&departureDate=2019-09-22&returnDate=2019-09-23&passengerCount=1```
 
 yields:
