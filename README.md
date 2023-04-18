@@ -15,8 +15,6 @@ The result should be a JSON response which contains a list of flights ordered by
 
 * The use of promises is not correct. ==> **Should be fixed, but in depth testing is yet to be done
 * Investigate if Async annotation is needed. The interviewer told me otherwise
-* It needs separation of concerns; use of SOLID principles
-* The configuration should be taken out of the spring boot main application
 
 **Flights Aggregator API**
 
